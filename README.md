@@ -16,4 +16,4 @@ Moscow Institute of Physics and Technology, Mail.Ru Group & ФРОО
 
 
 ***
-[coursera.org/learn/oop-patterns-python/](hhttps://www.coursera.org/learn/oop-patterns-python/)
+[coursera.org/learn/oop-patterns-python/](https://www.coursera.org/learn/oop-patterns-python/)
