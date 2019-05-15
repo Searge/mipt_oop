@@ -20,3 +20,11 @@ unit_vectors = [
     [1, 0, 0],
     [0, 1, 0],
     [0, 0, 1]]
+
+vectors = [
+    [1, 2, 3]
+]
+
+dict_ = {'hello': 'hi',
+         'name': 'John'
+         }
