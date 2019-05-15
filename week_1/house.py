@@ -82,10 +82,9 @@ def draw_house_window(window, x, y, width, height):
 
 
 def draw_house_roof(window, x, y, width, height):
-    roof = gr.Polygon(
-        gr.Point(x - width // 2, y),
-        gr.Point(x + width // 2, y),
-        gr.Point(x, y - height))
+    roof = gr.Polygon(gr.Point(x - width // 2, y),
+                      gr.Point(x + width // 2, y),
+                      gr.Point(x, y - height))
 
     roof.setFill("green")
     roof.draw(window)
