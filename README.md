@@ -14,6 +14,9 @@ Moscow Institute of Physics and Technology, Mail.Ru Group & ФРОО
 ![Repo size](https://img.shields.io/github/repo-size/Searge/mipt_oop.svg)
 ***
 
+## Контент
+1. [PEP 8](https://github.com/Searge/mipt_oop/blob/master/week_1/readme.md#pep-8--общепринятый-стиль-кода-на-языке-python)
+2. [Структурное программирование](https://github.com/Searge/mipt_oop/blob/master/week_1/structured_%20programming.md#понятие-о-структурном-программировании)
 
 ***
 [coursera.org/learn/oop-patterns-python/](https://www.coursera.org/learn/oop-patterns-python/)
