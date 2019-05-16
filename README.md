@@ -17,7 +17,8 @@ Moscow Institute of Physics and Technology, Mail.Ru Group & ФРОО
 ## Контент
 1. [PEP 8](https://github.com/Searge/mipt_oop/blob/master/week_1/readme.md#pep-8--общепринятый-стиль-кода-на-языке-python)
 2. [Структурное программирование](https://github.com/Searge/mipt_oop/blob/master/week_1/structured_%20programming.md#понятие-о-структурном-программировании)
-3. [Контрактное программирование](https://github.com/Searge/mipt_oop/blob/master/week_1/contracts.md#%D1%83%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F-assert)
+3. [Контрактное программирование](https://github.com/Searge/mipt_oop/blob/master/week_1/contracts.md#утверждения-assert)
+4. [Разработка через тестирование](https://github.com/Searge/mipt_oop/blob/master/week_1/tdd.md#разработка-через-тестирование)
 
 ***
 [coursera.org/learn/oop-patterns-python/](https://www.coursera.org/learn/oop-patterns-python/)
