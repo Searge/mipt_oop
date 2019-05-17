@@ -63,7 +63,8 @@ class TestSort(unittest.TestCase):
 if True: #__name__ == "__main__":
     unittest.main()
 ```
-<samp>
+
+```console
 test_simple_cases (submission.TestSort) ... FAIL
 
 ======================================================================
@@ -78,7 +79,7 @@ AssertionError: False is not true
 Ran 1 test in 0.001s
 
 FAILED (failures=1)
-</samp>
+```
 
 Запуск данного теста конечно покажет нам ошибку, но не будет ясно, при каком конкретно случае она случилась.
 
