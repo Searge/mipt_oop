@@ -64,7 +64,7 @@ if True: #__name__ == "__main__":
     unittest.main()
 ```
 
-```console
+```shell
 test_simple_cases (submission.TestSort) ... FAIL
 
 ======================================================================
