@@ -107,17 +107,17 @@ FAILED (failures=1)
 
 Есть также проверки, проводящие сравнение и проверки включения:
 
-|        Вариант assert        |                    Что проверяет                    |
-| :--------------------------: | :-------------------------------------------------: |
-|  `assertAlmostEqual(a, b)`   |                `round(a-b, 7) == 0`                 |
-| `assertNotAlmostEqual(a, b)` |                `round(a-b, 7) != 0`                 |
-|    `assertGreater(a, b)`     |                       `a > b`                       |
-|  `assertGreaterEqual(a, b)`  |                      `a >= b`                       |
-|      `assertLess(a, b)`      |                       `a < b`                       |
-|   `assertLessEqual(a, b)`    |                      `a <= b`                       |
-|     `assertRegex(s, r)`      |                    `r.search(s)`                    |
-|    `assertNotRegex(s, r)`    |                  `not r.search(s)`                  |
-|   `assertCountEqual(a, b)`   | `контейнеры равны с точностью до порядка элементов` |
+|        Вариант assert        |                   Что проверяет                   |
+| :--------------------------: | :-----------------------------------------------: |
+|  `assertAlmostEqual(a, b)`   |               `round(a-b, 7) == 0`                |
+| `assertNotAlmostEqual(a, b)` |               `round(a-b, 7) != 0`                |
+|    `assertGreater(a, b)`     |                      `a > b`                      |
+|  `assertGreaterEqual(a, b)`  |                     `a >= b`                      |
+|      `assertLess(a, b)`      |                      `a < b`                      |
+|   `assertLessEqual(a, b)`    |                     `a <= b`                      |
+|     `assertRegex(s, r)`      |                   `r.search(s)`                   |
+|    `assertNotRegex(s, r)`    |                 `not r.search(s)`                 |
+|   `assertCountEqual(a, b)`   | контейнеры равны с точностью до порядка элементов |
 
 ### Выделение подслучая
 
@@ -230,4 +230,231 @@ FAILED (failures=3)
 self.assertCountEqual(a, b, msg="Elements changed. a = "+str(a))
 self.assertTrue(is_not_in_descending_order(a),
                 msg="List not sorted. a = "+str(a))
+```
+
+### Среда исполнения теста
+
+Для проведения теста нужно создание определённых тестовых условий, определённого состояния среды исполнения теста (Test fixture). Например, нужно создать и заполнить определённым образом базу данных, необходимую для проведения операций, подвергающихся проверке. Или же проводится тестирование некоего класса A, использующего объект класса B, который использует объект класса C. В этом случае требуется создать и инициализировать эти объекты.
+
+Базовые правила тестирования:
+
+1. Работа теста не должна зависеть от результатов работы других тестов.
+2. Тест должен использовать данные, специально для него подготовленные, и никакие другие.
+
+
+Поскольку предыдущие тесты могут повлиять на среду исполнения, её нужно уничтожать и создавать заново для каждого тестового случая. Для этого используются автоматически вызываемые методы setUp() и tearDown():
+
+```python
+class TestSort(unittest.TestCase):
+    def setUp(self):
+        self.cases = ([1], [], [1, 2], [1, 2, 3, 4, 5],
+                      [4, 2, 5, 1, 3], [5, 4, 4, 5, 5],
+                      list(range(1, 10)), list(range(9, 0, -1)))
+
+    def test_simple_cases(self):
+        for b in self.cases:
+            with self.subTest(case=b):
+                a = list(b)
+                sort_algorithm(a)
+                self.assertCountEqual(a, b,
+                                      msg="Elements changed. a = "+str(a))
+                self.assertTrue(is_not_in_descending_order(a),
+                                msg="List not sorted. a = "+str(a))
+
+    def tearDown(self):
+        self.cases = None
+```
+
+Также существуют методы инициализации среды исполнения для класса (setUpClass и tearDownClass) и модуля (setUpModule и tearDownModule), но их неаккуратное использование может привести к нарушению базовых правил, упомянутых выше.
+
+### Группировка тестов, управление запуском тестов и интерпретация результатов тестирования
+
+Библиотека unittest также содержит:
+
+1. класс TestSuite, позволяющий группировать тесты;
+2. класс TextTestRunner, позволяющих запускать группы тестов;
+3. класс TestLoader, управляющий автоматическим созданием объектов TestSuite;
+4. класс TestResult для автоматизации анализа результатов тестирования.
+
+В следующем примере используется группировка тестов и их запуск при помощи TestRunner:
+
+```python
+import unittest
+import sys
+
+
+def is_not_in_descending_order(a):
+    """
+    Check if the list a is not descending (means "rather ascending")
+    """
+    for i in range(len(a)-1):
+        if a[i] > a[i+1]:
+            return False
+    return True
+
+
+class TestSort(unittest.TestCase):
+    def test_simple_cases(self):
+        self.cases = ([1], [], [1, 2], [1, 2, 3, 4, 5],
+                      [4, 2, 5, 1, 3], [5, 4, 4, 5, 5],
+                      list(range(1, 10)), list(range(9, 0, -1)))
+        for b in self.cases:
+            with self.subTest(case=b):
+                a = list(b)
+                sort_algorithm(a)
+                self.assertCountEqual(a, b,
+                                      msg="Elements changed. a = "+str(a))
+                self.assertTrue(is_not_in_descending_order(a),
+                                msg="List not sorted. a = "+str(a))
+
+    def test_stability(self):
+        self.cases = ([[0] for i in range(5)],
+                      [[1, 2], [2, 2], [2, 3], [2, 2], [2, 3], [1, 2]],
+                      [[5, 2], [10, 5], [5, 2], [10, 5], [5, 2], [10, 5]])
+
+        for b in self.cases:
+            with self.subTest(case=b):
+                a = list(b)
+                sort_algorithm(a)
+                b.sort()  # here we are cheating: standard sort is stable
+                # to test stability we will check a[i] is b[i]
+                self.assertTrue(all(x is y for x, y in zip(a, b)))
+
+    def test_universality(self):
+        self.cases = ([4, 2, 8], list('abcdefg'),
+                      [True, False],
+                      [float(i)/10 for i in range(10, 0, -1)],
+                      [[1, 2], [2], [3, 4], [3, 4, 5], [6, 7]])
+        for b in self.cases:
+            with self.subTest(case=b):
+                a = list(b)
+                sort_algorithm(a)
+                self.assertCountEqual(a, b,
+                                      msg="Elements changed. a = "+str(a))
+                self.assertTrue(is_not_in_descending_order(a),
+                                msg="List not sorted. a = "+str(a))
+
+
+def bubble_sort(A: list):
+    """
+    Sorting of list in place. Using Bubble Sort algorithm.
+    """
+    N = len(A)
+    list_is_sorted = False
+    bypass = 1
+    while not list_is_sorted:
+        list_is_sorted = True
+        for k in range(N - bypass):
+            if A[k] > A[k+1]:
+                A[k], A[k+1] = A[k+1], A[k]
+                list_is_sorted = False
+        bypass += 1
+
+
+def doing_nothing(A: list):
+    """
+    Doing nothing with the list A.
+    """
+    pass
+
+
+def sort_test_suite():
+    suite = unittest.TestSuite()
+    suite.addTest(TestSort('test_simple_cases'))
+    suite.addTest(TestSort('test_stability'))
+    suite.addTest(TestSort('test_universality'))
+    return suite
+
+
+if True:  # __name__ == '__main__':
+    runner = unittest.TextTestRunner(stream=sys.stdout, verbosity=2)
+
+    for algo in doing_nothing, bubble_sort:
+        print('Testing function ', algo.__doc__.strip())
+        test_suite = sort_test_suite()
+        sort_algorithm = algo
+        runner.run(test_suite)
+```
+
+```shell
+Testing function  Doing nothing with the list A.
+test_simple_cases (submission.TestSort) ... test_stability (submission.TestSort) ... test_universality (submission.TestSort) ...
+======================================================================
+FAIL: test_simple_cases (submission.TestSort) (case=[4, 2, 5, 1, 3])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 34, in test_simple_cases
+    msg="List not sorted. a = "+str(a))
+AssertionError: False is not true : List not sorted. a = [4, 2, 5, 1, 3]
+
+======================================================================
+FAIL: test_simple_cases (submission.TestSort) (case=[5, 4, 4, 5, 5])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 34, in test_simple_cases
+    msg="List not sorted. a = "+str(a))
+AssertionError: False is not true : List not sorted. a = [5, 4, 4, 5, 5]
+
+======================================================================
+FAIL: test_simple_cases (submission.TestSort) (case=[9, 8, 7, 6, 5, 4, 3, 2, 1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 34, in test_simple_cases
+    msg="List not sorted. a = "+str(a))
+AssertionError: False is not true : List not sorted. a = [9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+======================================================================
+FAIL: test_stability (submission.TestSort) (case=[[1, 2], [1, 2], [2, 2], [2, 2], [2, 3], [2, 3]])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 47, in test_stability
+    self.assertTrue(all(x is y for x, y in zip(a, b)))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_stability (submission.TestSort) (case=[[5, 2], [5, 2], [5, 2], [10, 5], [10, 5], [10, 5]])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 47, in test_stability
+    self.assertTrue(all(x is y for x, y in zip(a, b)))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_universality (submission.TestSort) (case=[4, 2, 8])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 61, in test_universality
+    msg="List not sorted. a = "+str(a))
+AssertionError: False is not true : List not sorted. a = [4, 2, 8]
+
+======================================================================
+FAIL: test_universality (submission.TestSort) (case=[True, False])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 61, in test_universality
+    msg="List not sorted. a = "+str(a))
+AssertionError: False is not true : List not sorted. a = [True, False]
+
+======================================================================
+FAIL: test_universality (submission.TestSort) (case=[1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/zzbjl/submission.py", line 61, in test_universality
+    msg="List not sorted. a = "+str(a))
+AssertionError: False is not true : List not sorted. a = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (failures=8)
+Testing function  Sorting of list in place. Using Bubble Sort algorithm.
+test_simple_cases (submission.TestSort) ... ok
+test_stability (submission.TestSort) ... ok
+test_universality (submission.TestSort) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+
 ```
