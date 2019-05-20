@@ -25,3 +25,7 @@ Moscow Institute of Physics and Technology, Mail.Ru Group & ФРОО
 
 ***
 [coursera.org/learn/oop-patterns-python/](https://www.coursera.org/learn/oop-patterns-python/)
+
+***
+
+> #### [Lessons from previous course](https://github.com/Searge/DiveinPython#content)
