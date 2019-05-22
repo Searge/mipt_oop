@@ -28,7 +28,16 @@ class C(B):
         print("Hello")
 
 
-c = C()
-c.do_something_else()
+# c = C()
+# c.do_something_else()
 # TypeError: Can't instantiate abstract class C
 # with abstract methods do_somethig
+
+
+class D(B):
+    def do_somethig(self):
+        print('Hi 2!')
+
+
+d = D()
+d.do_somethig()
