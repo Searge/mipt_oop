@@ -1,26 +1,40 @@
 import math
+from abc import ABC, abstractmethod
+from typing import List
+
+# Вам необходимо создать абстрактный базовый класс Base
+# и построить корректную схему наследования.
+# При выполнении следует избегать дублирования кода,
+# и стараться следовать SOLID принципам ООП.
 
 
-class Base:
+class Base(ABC):
 
-    pass
+    data: List[int]
+    result: List[int]
 
-
-class A:
-
-    def __init__(self, data, result):
+    def __init__(self, data: List[int], result: List[int]) -> None:
         self.data = data
         self.result = result
 
-    def get_answer(self):
+    def get_answer(self) -> List[int]:
+        # return: List[bool] -> List[int]
         return [int(x >= 0.5) for x in self.data]
 
-    def get_score(self):
-        ans = self.get_answer()
+    def get_score(self) -> float:
+        # Compares result and bool's list
+        ans: List[int] = self.get_answer()
         return sum([int(x == y)
                     for (x, y) in zip(ans, self.result)]) / len(ans)
 
+    @abstractmethod
     def get_loss(self):
+        pass
+
+
+class A(Base):
+
+    def get_loss(self) -> float:
         return sum([(x - y) * (x - y)
                     for (x, y) in zip(self.data, self.result)])
 
