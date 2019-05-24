@@ -1,0 +1,19 @@
+{
+  "include": [
+    "week_2",
+    "week_3",
+    "week_4"
+  ],
+  "ignore": ["week_1"],
+  "exclude": [
+    "doc",
+    "img"
+  ],
+  "pythonVersion": "3.7",
+  "venvPath": "/Users/searge/anaconda3/envs/",
+  "venv": "OOP",
+  "extraPaths": [
+    "/Users/searge/anaconda3/envs/OOP/lib/python3.7/site-packages",
+    "week_1/modules"
+  ]
+}
