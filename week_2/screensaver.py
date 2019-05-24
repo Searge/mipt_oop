@@ -1,25 +1,27 @@
 # -*- coding: utf-8 -*-
+from typing import Tuple, List, Any, Union
 import pygame
 import random
 import math
 
-SCREEN_DIM = (800, 600)
+SCREEN_DIM: Tuple[int, int] = (800, 600)
 
 
 def main():
     # Основная программа
     pygame.init()
-    gameDisplay = pygame.display.set_mode(SCREEN_DIM)
+    gameDisplay: None = pygame.display.set_mode(SCREEN_DIM)
     pygame.display.set_caption("MyScreenSaver")
 
-    steps = 35
-    working = True
-    points = []
-    speeds = []
-    show_help = False
-    pause = True
+    steps: int = 35
+    working: bool = True
+    points: List[Any] = []
+    speeds: List[Tuple[Union[int, Any], Union[int, Any]]] = []
+    show_help: bool = False
+    pause: bool = True
 
-    hue = 0
+    hue: int = 0
+
     color = pygame.Color(0)
 
     while working:
