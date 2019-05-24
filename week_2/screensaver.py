@@ -4,25 +4,26 @@ import pygame
 import random
 import math
 
+from pygame.color import Color
+
 SCREEN_DIM: Tuple[int, int] = (800, 600)
 
 
 def main():
     # Основная программа
     pygame.init()
-    gameDisplay: None = pygame.display.set_mode(SCREEN_DIM)
+    gameDisplay: object = pygame.display.set_mode(SCREEN_DIM)
     pygame.display.set_caption("MyScreenSaver")
 
     steps: int = 35
     working: bool = True
-    points: List[Any] = []
-    speeds: List[Tuple[Union[int, Any], Union[int, Any]]] = []
+    points: List[Tuple[int, int]] = []
+    speeds: List[Tuple[float, float]] = []
     show_help: bool = False
     pause: bool = True
 
     hue: int = 0
-
-    color = pygame.Color(0)
+    color: Color = pygame.Color(0)
 
     while working:
         for event in pygame.event.get():
@@ -38,14 +39,15 @@ def main():
                     pause = not pause
                 if event.key == pygame.K_KP_PLUS:
                     steps += 1
-                if event.key == pygame.K_F1:
-                    show_help = not show_help
                 if event.key == pygame.K_KP_MINUS:
                     steps -= 1 if steps > 1 else 0
+                if event.key == pygame.K_F1:
+                    show_help = not show_help
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 points.append(event.pos)
-                speeds.append((random.random() * 2, random.random() * 2))
+                speeds.append((random.random() * 2,
+                               random.random() * 2))
 
         gameDisplay.fill((0, 0, 0))
         hue = (hue + 1) % 360
@@ -150,10 +152,8 @@ def draw_points(points, style="points", width=3, color=(255, 255, 255)):
                                (int(p[0]), int(p[1])), width)
 
 
-# Сглаживание ломаной
-
-
 def get_point(points, alpha, deg=None):
+    # Сглаживание ломаной
     if deg is None:
         deg = len(points) - 1
     if deg == 0:
