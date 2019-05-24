@@ -6,6 +6,97 @@ import math
 SCREEN_DIM = (800, 600)
 
 
+def main():
+    # Основная программа
+    pygame.init()
+    gameDisplay = pygame.display.set_mode(SCREEN_DIM)
+    pygame.display.set_caption("MyScreenSaver")
+
+    steps = 35
+    working = True
+    points = []
+    speeds = []
+    show_help = False
+    pause = True
+
+    hue = 0
+    color = pygame.Color(0)
+
+    while working:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                working = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    working = False
+                if event.key == pygame.K_r:
+                    points = []
+                    speeds = []
+                if event.key == pygame.K_p:
+                    pause = not pause
+                if event.key == pygame.K_KP_PLUS:
+                    steps += 1
+                if event.key == pygame.K_F1:
+                    show_help = not show_help
+                if event.key == pygame.K_KP_MINUS:
+                    steps -= 1 if steps > 1 else 0
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                points.append(event.pos)
+                speeds.append((random.random() * 2, random.random() * 2))
+
+        gameDisplay.fill((0, 0, 0))
+        hue = (hue + 1) % 360
+        color.hsla = (hue, 100, 50, 100)
+        draw_points(points)
+        draw_points(get_knot(points, steps), "line", 3, color)
+        if not pause:
+            set_points(points, speeds)
+        if show_help:
+            draw_help()
+
+        pygame.display.flip()
+
+    pygame.display.quit()
+    pygame.quit()
+    exit(0)
+
+
+class Vec2d:
+    def __init__(self, x, y, v, k):
+        self.x = x
+        self.y = y
+        self.v = v
+        self.k = k
+
+    def __add__(self):
+        # сумма двух векторов
+        return self.x[0] + self.y[0], self.x[1] + self.y[1]
+
+    def __sub__(self):
+        return self.x[0] - self.y[0], self.x[1] - self.y[1]
+
+    def __mul__(self):
+        return self.v[0] * self.k, self.v[1] * self.k
+
+    def len(self):
+        return math.sqrt(self.x[0] *
+                         self.x[0] +
+                         self.x[1] *
+                         self.x[1])
+
+    def int_pair(self) -> tuple:
+        return self.__sub__(self.y, self.x)
+
+
+class Polyline:
+    pass
+
+
+class Knot(Polyline):
+    pass
+
+
 # Методы для работы с векторами
 
 
@@ -129,62 +220,6 @@ def set_points(points, speeds):
             speeds[p] = (- speeds[p][0], speeds[p][1])
         if points[p][1] > SCREEN_DIM[1] or points[p][1] < 0:
             speeds[p] = (speeds[p][0], -speeds[p][1])
-
-
-def main():
-    # Основная программа
-    pygame.init()
-    gameDisplay = pygame.display.set_mode(SCREEN_DIM)
-    pygame.display.set_caption("MyScreenSaver")
-
-    steps = 35
-    working = True
-    points = []
-    speeds = []
-    show_help = False
-    pause = True
-
-    hue = 0
-    color = pygame.Color(0)
-
-    while working:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                working = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    working = False
-                if event.key == pygame.K_r:
-                    points = []
-                    speeds = []
-                if event.key == pygame.K_p:
-                    pause = not pause
-                if event.key == pygame.K_KP_PLUS:
-                    steps += 1
-                if event.key == pygame.K_F1:
-                    show_help = not show_help
-                if event.key == pygame.K_KP_MINUS:
-                    steps -= 1 if steps > 1 else 0
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                points.append(event.pos)
-                speeds.append((random.random() * 2, random.random() * 2))
-
-        gameDisplay.fill((0, 0, 0))
-        hue = (hue + 1) % 360
-        color.hsla = (hue, 100, 50, 100)
-        draw_points(points)
-        draw_points(get_knot(points, steps), "line", 3, color)
-        if not pause:
-            set_points(points, speeds)
-        if show_help:
-            draw_help()
-
-        pygame.display.flip()
-
-    pygame.display.quit()
-    pygame.quit()
-    exit(0)
 
 
 if __name__ == "__main__":
