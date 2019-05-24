@@ -9,23 +9,28 @@ SCREEN_DIM = (800, 600)
 # Методы для работы с векторами
 
 
-def sub(x, y):  # разность двух векторов
+def sub(x, y):
+    # разность двух векторов
     return x[0] - y[0], x[1] - y[1]
 
 
-def add(x, y):  # сумма двух векторов
+def add(x, y):
+    # сумма двух векторов
     return x[0] + y[0], x[1] + y[1]
 
 
-def length(x):  # длинна вектора
+def length(x):
+    # длинна вектора
     return math.sqrt(x[0] * x[0] + x[1] * x[1])
 
 
-def mul(v, k):  # умножение вектора на число
+def mul(v, k):
+    # умножение вектора на число
     return v[0] * k, v[1] * k
 
 
-def scal_mul(v, k):  # скалярное умножение векторов
+def scal_mul(v, k):
+    # скалярное умножение векторов
     return v[0] * k, v[1] * k
 
 
@@ -87,8 +92,8 @@ def get_knot(points, count):
     return res
 
 
-# Отрисовка справки
 def draw_help():
+    # Отрисовка справки
     gameDisplay.fill((50, 50, 50))
     font1 = pygame.font.SysFont("courier", 24)
     font2 = pygame.font.SysFont("serif", 24)
@@ -116,8 +121,8 @@ def draw_help():
             text[1], True, (128, 128, 255)), (200, 100 + 30 * i))
 
 
-# Персчитывание координат опорных точек
 def set_points(points, speeds):
+    # Персчитывание координат опорных точек
     for p in range(len(points)):
         points[p] = add(points[p], speeds[p])
         if points[p][0] > SCREEN_DIM[0] or points[p][0] < 0:
@@ -126,8 +131,8 @@ def set_points(points, speeds):
             speeds[p] = (speeds[p][0], -speeds[p][1])
 
 
-# Основная программа
-if __name__ == "__main__":
+def main():
+    # Основная программа
     pygame.init()
     gameDisplay = pygame.display.set_mode(SCREEN_DIM)
     pygame.display.set_caption("MyScreenSaver")
@@ -180,3 +185,7 @@ if __name__ == "__main__":
     pygame.display.quit()
     pygame.quit()
     exit(0)
+
+
+if __name__ == "__main__":
+    main()
