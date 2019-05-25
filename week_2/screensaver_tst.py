@@ -1,4 +1,4 @@
-from typing import Tuple, List, Any, Union
+from typing import Tuple, List
 import pygame
 import random
 
