@@ -6,7 +6,9 @@ import math
 SCREEN_DIM = (800, 600)
 
 
-def draw_points(points, style="points", width=3, color=(255, 255, 255)):
+def draw_points(points, style="points",
+                width=3,
+                color=(255, 255, 255)):
     # "Отрисовка" точек
     if style == "line":
         for p_n in range(-1, len(points) - 1):
@@ -22,9 +24,8 @@ def draw_points(points, style="points", width=3, color=(255, 255, 255)):
 
 
 # Сглаживание ломаной
-
-
-def get_point(points, alpha, deg=None):
+def get_point(points,
+              alpha, deg=None):
     if deg is None:
         deg = len(points) - 1
     if deg == 0:
@@ -66,8 +67,6 @@ def set_points(points, speeds):
 
 
 # Методы для работы с векторами
-
-
 def sub(x, y):  # разность двух векторов
     return x[0] - y[0], x[1] - y[1]
 

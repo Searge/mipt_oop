@@ -14,8 +14,8 @@ def main():
     pygame.display.set_caption("MyScreenSaver")
 
     steps: int = 35
-    speeds: List[Tuple[float, float]] = []
     points: List[Tuple[int, int]] = []
+    speeds: List[Tuple[float, float]] = []
     # show_help: bool = False
     working: bool = True
     pause: bool = True
@@ -107,15 +107,15 @@ def get_point(points: List[int, int], alpha, deg=None):
                    1 - alpha))
 
 
-def get_points(base_points, count):
-    alpha = 1 / count
+def get_points(base_points, steps: int):
+    alpha: float = 1 / steps
     res = []
-    for i in range(count):
+    for i in range(steps):
         res.append(get_point(base_points, i * alpha))
     return res
 
 
-def get_knot(points, count):
+def get_knot(points, steps):
     if len(points) < 3:
         return []
     res = []
@@ -126,7 +126,7 @@ def get_knot(points, count):
         ptn.append(mul(add(points[i + 1],
                            points[i + 2]), 0.5))
 
-        res.extend(get_points(ptn, count))
+        res.extend(get_points(ptn, steps))
     return res
 
 
