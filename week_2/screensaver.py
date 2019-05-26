@@ -18,7 +18,7 @@ def main():
     steps: int = 35
     working: bool = True
     points: List[Tuple[int, int]] = []
-    speeds: List[Tuple[float, float]] = []
+    speeds: List[Tuple[Union[int, Any], Union[int, Any]]] = []
     show_help: bool = False
     pause: bool = True
 

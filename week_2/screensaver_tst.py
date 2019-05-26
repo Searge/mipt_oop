@@ -1,6 +1,8 @@
-from typing import Tuple, List
+from typing import Tuple, List, Union
 import pygame
 import random
+
+from pygame.color import Color
 
 SCREEN_DIM: Tuple[int, int] = (800, 600)
 
@@ -23,7 +25,7 @@ def main():
     print("\nTesting:\n=== === === === === ===\n\n")
 
     hue: int = 0
-    color: object = pygame.Color(0)
+    color: Color = pygame.Color(0)
 
     while working:
         for event in pygame.event.get():
@@ -87,7 +89,12 @@ def main():
 
 
 def add(x, y):
-    # сумма двух векторов
+    """
+    сумма двух векторов
+    :type x: List[Tuple[Union[int, float], Union[int, float]]]
+    :type y: List[Tuple[Union[int, float], Union[int, float]]]
+    :rtype: Tuple[Union[int, float], Union[int, float]]
+    """
     return x[0] + y[0], x[1] + y[1]
 
 
