@@ -1,4 +1,4 @@
-from typing import Tuple, List, Union
+from typing import Tuple, List, Union, Any
 import pygame
 import random
 
@@ -91,8 +91,8 @@ def main():
 def add(x, y):
     """
     сумма двух векторов
-    :type x: List[Tuple[Union[int, float], Union[int, float]]]
-    :type y: List[Tuple[Union[int, float], Union[int, float]]]
+    :type x: Tuple[Union[int, float], Union[int, float]]
+    :type y: Tuple[Union[int, float], Union[int, float]]
     :rtype: Tuple[Union[int, float], Union[int, float]]
     """
     return x[0] + y[0], x[1] + y[1]
@@ -123,11 +123,16 @@ def get_points(base_points, steps: int):
 
 
 def get_knot(points, steps):
+    """
+
+    :type steps: int
+    :type points: List[Tuple[int, int]]
+    """
     if len(points) < 3:
         return []
     res = []
     for i in range(-2, len(points) - 2):
-        ptn = []
+        ptn: List[Union[Tuple[Any, Any], tuple[int, int]]] = []
         ptn.append(mul(add(points[i], points[i + 1]), 0.5))
         ptn.append(points[i + 1])
         ptn.append(mul(add(points[i + 1],
