@@ -39,7 +39,7 @@
 К структурным шаблонам относятся следующие шаблоны:
 
 - [Адаптер](https://refactoring.guru/uk/design-patterns/adapter) (Adapter) – взаимодействие несовместимых объектов
-- Мост (Bridge) – разделение абстракции и реализации
+- [Мост](https://refactoring.guru/uk/design-patterns/bridge) (Bridge) – разделение абстракции и реализации
 - [Компоновщик](https://refactoring.guru/uk/design-patterns/composite) (Composite) – агрегирование нескольких объектов в одну структуру
 - [Декоратор](https://refactoring.guru/uk/design-patterns/decorator) (Decorator) – динамическое создание дополнительного поведения объекта
 - [Фасад](https://refactoring.guru/uk/design-patterns/facade) (Facade) – сокрытие сложной структуры за одним объектом, являющимся общей точкой доступа
