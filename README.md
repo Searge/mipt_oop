@@ -22,6 +22,11 @@ Moscow Institute of Physics and Technology, Mail.Ru Group & ФРОО
 5. [Использование unittest](https://github.com/Searge/mipt_oop/blob/master/week_1/unittests.md#использование-unittest)
 6. [Парадигмы ООП](https://github.com/Searge/mipt_oop/blob/master/week_2/oop_paradigms.md#парадигмы-ооп)
 7. [SOLID-принципы](https://github.com/Searge/mipt_oop/blob/master/week_2/SOLID_Principle.md#solid-принципы)
+8. [Парадигма наследования](https://github.com/Searge/mipt_oop/blob/master/week_2/Inheritance.md#парадигма-наследования)
+9. [Паттерны проектирования](https://github.com/Searge/mipt_oop/blob/master/week_3/patterns.md#паттерны-проектирования)
+   1.  [Паттерн Адаптер](https://nbviewer.jupyter.org/github/Searge/mipt_oop/blob/master/week_3/Adapter.ipynb#Паттерн-Адаптер)
+   2.  [Паттерн Декоратор](https://nbviewer.jupyter.org/github/Searge/mipt_oop/blob/master/week_3/decorator.ipynb#Паттерн-Декоратор)
+   3.  [Паттерн Наблюдатель](https://nbviewer.jupyter.org/github/Searge/mipt_oop/blob/master/week_3/Observer.ipynb)
 
 ***
 [coursera.org/learn/oop-patterns-python/](https://www.coursera.org/learn/oop-patterns-python/)
