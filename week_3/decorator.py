@@ -29,8 +29,7 @@ class Animal(Creature):
 class AbstractDecorator(Creature):
     def __init__(self, obj):
         """
-        Конструктор (__init__) должен принимать обязательный аргумент self
-        и в качестве дополнительного аргумента наш декорируемый объект
+        Сохраняем базовый объект для нашего декоратора в переменную
         """
         self.obj = obj
 
@@ -66,39 +65,42 @@ class Fast(AbstractDecorator):
 if __name__ == "__main__":
     # Создадим базовое животное и выполним все его методы:
     animal = Animal()
+    print(animal)
     animal.feed()
     animal.move()
     animal.make_noise()
-    print(animal)
 
     # Теперь сделаем из нашего животного водоплавающее.
     # Для этого определим, что оно является водоплавающим и
     # в качестве декорируемого объекта укажем наше животное.
     swimming = Swimming(animal)
+    print(swimming)
     swimming.feed()
     swimming.move()
     swimming.make_noise()
-    print(swimming)
 
     # Оно ест траву, плавает и не издаёт звуков.
     # Сделаем из нашего животного хищника:
     predator = Predator(animal)
+    print(predator)
     predator.feed()
     predator.move()
     predator.make_noise()
-    print(predator)
 
     # Получили быстрого водоплавающего хищника.
     fast = Fast(animal)
+    print(fast)
     fast.feed()
     fast.move()
     fast.make_noise()
-    print(fast)
 
     # можно применять несколько одинаковых декораторов к одному объекту.
     # Мы можем сделать наше животное ещё быстрее:
-    faster = Fast(Fast(animal))
+    faster = Fast(fast)
+    print(faster)
     faster.feed()
     faster.move()
     faster.make_noise()
-    print(faster)
+
+    # Base object w/o Decoratar
+    print(faster.obj.obj)
