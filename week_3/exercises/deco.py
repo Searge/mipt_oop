@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+
+
 class Hero:
     def __init__(self):
         self.positive_effects = []
@@ -26,4 +29,20 @@ class Hero:
     def get_stats(self):
         return self.stats.copy()
 
-    # ...
+
+class AbstractEffect(Hero, ABC):
+
+    def __init__(self, base):
+        self.base = base
+
+    @abstractmethod
+    def get_positive_effects(self):
+        return self.positive_effects
+
+    @abstractmethod
+    def get_negative_effects(self):
+        return self.negative_effects
+
+    @abstractmethod
+    def get_stats(self):
+        pass
