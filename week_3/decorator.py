@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
     # можно применять несколько одинаковых декораторов к одному объекту.
     # Мы можем сделать наше животное ещё быстрее:
-    faster = Fast(animal)
+    faster = Fast(Fast(animal))
     faster.feed()
     faster.move()
     faster.make_noise()
