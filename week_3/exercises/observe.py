@@ -8,17 +8,14 @@ class Engine:
 
 class ObservableEngine(Engine):
 
-    def __init__(self):
-        self.__subscribers = set()
-
     def subscribe(self, subscriber):
-        self.__subscribers.add(subscriber)
+        self.subscribers.add(subscriber)
 
     def unsubscribe(self, subscriber):
-        self.__subscribers.remove(subscriber)
+        self.subscribers.remove(subscriber)
 
     def notify(self, message):
-        for subscriber in self.__subscribers:
+        for subscriber in self.subscribers:
             subscriber.update(message)
 
 
@@ -40,7 +37,7 @@ class ShortNotificationPrinter(AbstractObserver):
 
 class FullNotificationPrinter(AbstractObserver):
     def __init__(self):
-        self.achievements = []
+        self.achievements = list()
 
     def update(self, message):
         if message not in self.achievements:
