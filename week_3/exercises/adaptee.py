@@ -40,9 +40,28 @@ class Light:
         return self.grid.copy()
 
 
+class System:
+    def __init__(self):
+        self.map = self.grid = [[0 for i in range(30)]
+                                for _ in range(20)]
+        self.map[5][7] = 1  # Источники света
+        self.map[5][2] = -1  # Стены
+
+    def get_lightening(self, light_mapper):
+        self.lightmap = light_mapper.lighten(self.map)
+
+
 class MappingAdapter:
     def __init__(self, adaptee):
-        pass
+        self.adaptee = adaptee
 
     def lighten(self, grid):
-        pass
+        dim = (len(grid[0]), len(grid))
+        self.adaptee.set_dim(dim)
+
+
+if __name__ == '__main__':
+    system = System()
+    lights = Light((0, 0))
+    adapter = MappingAdapter(lights)
+    system.get_lightening(adapter)
