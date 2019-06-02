@@ -1,5 +1,10 @@
 from abc import ABC, abstractmethod
 
+
+class Engine:
+    def __init__(self):
+        self.subscribers = set()
+
 # Опишем наблюдаемую систему
 
 
@@ -13,7 +18,8 @@ class ObservableEngine(Engine):
         self.subscribers.add(subscriber)
 
     def unsubscribe(self, subscriber):
-        # Если данный подписчик присутствует в списке подписчиков, его можно удалить
+        # Если данный подписчик присутствует в списке подписчиков,
+        # его можно удалить
         if subscriber in self.subscribers:
             self.subscribers.remove(subscriber)
 
