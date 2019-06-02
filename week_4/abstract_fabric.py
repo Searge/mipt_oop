@@ -21,7 +21,8 @@ class EasyLevel(AbstractLevel):
                     if i == 0 or j == 0 or i == 4 or j == 4:
                         self.Map[j][i] = -1  # граница карты
                     else:
-                        self.Map[j][i] = random.randint(0, 2)  # случайная характеристика области
+                        # случайная характеристика области
+                        self.Map[j][i] = random.randint(0, 2)
 
         def get_map(self):
             return self.Map
@@ -87,9 +88,11 @@ class HardLevel(AbstractLevel):
             for i in range(10):
                 for j in range(10):
                     if i == 0 or j == 0 or i == 9 or j == 9:
-                        self.Map[j][i] = -1  # граница карты :: непроходимый участок карты
+                        # граница карты :: непроходимый участок карты
+                        self.Map[j][i] = -1
                     else:
-                        self.Map[j][i] = random.randint(-1, 8)  # случайная характеристика области
+                        # случайная характеристика области
+                        self.Map[j][i] = random.randint(-1, 8)
 
         def get_map(self):
             return self.Map
