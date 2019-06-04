@@ -81,10 +81,9 @@ if __name__ == "__main__":
     print(chain.handle(obj, EventGet(str)))
 
     chain.handle(obj, EventSet(100))
-    print(chain.handle(obj, EventGet(int)))
-
     chain.handle(obj, EventSet(0.5))
-    print(chain.handle(obj, EventGet(float)))
-
     chain.handle(obj, EventSet('new text'))
+
+    print(chain.handle(obj, EventGet(int)))
+    print(chain.handle(obj, EventGet(float)))
     print(chain.handle(obj, EventGet(str)))
