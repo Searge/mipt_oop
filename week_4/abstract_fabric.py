@@ -4,12 +4,12 @@ import random
 class AbstractLevel():
 
     @classmethod
-    def get_map(Class):
-        return Class.Map()
+    def get_map(cls):
+        return cls.Map()
 
     @classmethod
-    def get_objects(Class):
-        return Class.Objects()
+    def get_objects(cls):
+        return cls.Objects()
 
 
 class EasyLevel(AbstractLevel):
@@ -56,7 +56,8 @@ class MediumLevel(AbstractLevel):
                     if i == 0 or j == 0 or i == 7 or j == 7:
                         self.Map[j][i] = -1  # граница карты
                     else:
-                        self.Map[j][i] = random.randint(0, 2)  # случайная характеристика области
+                        self.Map[j][i] = random.randint(0, 2)
+                        # случайная характеристика области
 
         def get_map(self):
             return self.Map
