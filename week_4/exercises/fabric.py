@@ -144,4 +144,4 @@ if __name__ == "__main__":
     hard_factory = HardLevel()
     getmap = hard_factory.get_map()
     getobj = hard_factory.get_objects()
-    print(getobj.get_objects(getmap))
+    print(getmap, getobj, sep='\n')
