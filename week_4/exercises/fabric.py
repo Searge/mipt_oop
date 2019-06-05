@@ -61,24 +61,24 @@ class EasyLevel(AbstractLevel):
 class MediumLevel(AbstractLevel):
     class Map:
         def __init__(self):
-            self.Map = [[0 for j in range(8)] for i in range(8)]
+            self._map = [[0 for j in range(8)] for i in range(8)]
             for i in range(8):
                 for j in range(8):
                     if i == 0 or j == 0 or i == 7 or j == 7:
                         # граница карты
-                        self.Map[j][i] = -1
+                        self._map[j][i] = -1
                     else:
                         # случайная характеристика области
-                        self.Map[j][i] = random.randint(0, 2)
+                        self._map[j][i] = random.randint(0, 2)
 
         def get_map(self):
-            return self.Map
+            return self._map
 
     class Objects:
         def __init__(self):
             self.objects = [('next_lvl', (4, 4))]
 
-        def get_objects(self, map):
+        def get_objects(self, map_obj):
             for obj_name in ['rat', 'snake']:
                 coord = (random.randint(1, 6), random.randint(1, 6))
                 intersect = True
@@ -98,30 +98,30 @@ class MediumLevel(AbstractLevel):
 class HardLevel(AbstractLevel):
     class Map:
         def __init__(self):
-            self.Map = [[0 for j in range(10)] for i in range(10)]
+            self._map = [[0 for j in range(10)] for i in range(10)]
             for i in range(10):
                 for j in range(10):
                     if i == 0 or j == 0 or i == 9 or j == 9:
                         # граница карты :: непроходимый участок карты
-                        self.Map[j][i] = -1
+                        self._map[j][i] = -1
                     else:
                         # случайная характеристика области
-                        self.Map[j][i] = random.randint(-1, 8)
+                        self._map[j][i] = random.randint(-1, 8)
 
         def get_map(self):
-            return self.Map
+            return self._map
 
     class Objects:
         def __init__(self):
             self.objects = [('next_lvl', (5, 5))]
 
-        def get_objects(self, map):
+        def get_objects(self, map_obj):
             for obj_name in ['rat', 'snake']:
                 coord = (random.randint(1, 8), random.randint(1, 8))
                 intersect = True
                 while intersect:
                     intersect = False
-                    if map[coord[0]][coord[1]] == -1:
+                    if map_obj.get_map()[coord[0]][coord[1]] == -1:
                         intersect = True
                         coord = (random.randint(1, 8), random.randint(1, 8))
                         continue
@@ -140,4 +140,8 @@ if __name__ == "__main__":
     map_ = factory.get_map()
     obj = factory.get_objects()
     print(map_, obj, sep='\n')
-    print(map_._map)
+    # print(map_._map)
+    hard_factory = HardLevel()
+    getmap = hard_factory.get_map()
+    getobj = hard_factory.get_objects()
+    print(getobj.get_objects(getmap))
