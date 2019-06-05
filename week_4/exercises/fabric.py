@@ -2,11 +2,19 @@ import random
 
 
 class AbstractLevel:
+    class Level:
+        def __init__(self, name):
+            self.name = name
+
     class Map:
         pass
 
     class Object:
         pass
+
+    @classmethod
+    def create_lvl(cls, name):
+        return cls.Level(name)
 
     @classmethod
     def get_map(cls):
@@ -54,3 +62,14 @@ class EasyLevel(AbstractLevel):
                 self.objects.append((obj_name, coord))
 
             return self.objects
+
+
+def create_lvl(factory):
+    lvl = factory.create_lvl(factory)
+    map_ = factory.get_map()
+    obj = factory.get_objects()
+
+
+if __name__ == "__main__":
+    factory = EasyLevel()
+    lvl = create_lvl(factory)
