@@ -2,17 +2,18 @@
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
 @EXPLICIT
-https://repo.anaconda.com/pkgs/main/osx-64/ca-certificates-2019.1.23-0.tar.bz2
+https://conda.anaconda.org/anaconda/osx-64/ca-certificates-2019.5.15-0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/jpeg-9b-he5867d9_2.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/libcxxabi-4.0.1-hcfea43d_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/libiconv-1.15-hdd342a3_7.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/libsodium-1.0.16-h3efe00b_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/pandoc-2.2.3.2-0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/xz-5.2.4-h1de35cc_4.tar.bz2
+https://conda.anaconda.org/anaconda/osx-64/yaml-0.1.7-hc338f04_2.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/zlib-1.2.11-h1de35cc_3.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/libcxx-4.0.1-hcfea43d_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/libpng-1.6.37-ha441bb4_0.tar.bz2
-https://repo.anaconda.com/pkgs/main/osx-64/openssl-1.1.1b-h1de35cc_1.tar.bz2
+https://conda.anaconda.org/anaconda/osx-64/openssl-1.1.1-h1de35cc_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/tk-8.6.8-ha441bb4_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/expat-2.2.6-h0a44026_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/icu-58.2-h4b95b61_1.tar.bz2
@@ -31,7 +32,7 @@ https://repo.anaconda.com/pkgs/main/osx-64/qt-5.9.7-h468cd18_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/appnope-0.1.0-py37_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/attrs-19.1.0-py37_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/backcall-0.1.0-py37_0.tar.bz2
-https://repo.anaconda.com/pkgs/main/osx-64/certifi-2019.3.9-py37_0.tar.bz2
+https://conda.anaconda.org/anaconda/osx-64/certifi-2019.3.9-py37_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/decorator-4.4.0-py37_1.tar.bz2
 https://repo.anaconda.com/pkgs/main/noarch/defusedxml-0.6.0-py_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/entrypoints-0.3-py37_0.tar.bz2
@@ -47,6 +48,7 @@ https://repo.anaconda.com/pkgs/main/osx-64/prometheus_client-0.6.0-py37_0.tar.bz
 https://repo.anaconda.com/pkgs/main/osx-64/ptyprocess-0.6.0-py37_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/pycodestyle-2.5.0-py37_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/pyflakes-2.1.1-py37_0.tar.bz2
+https://conda.anaconda.org/anaconda/osx-64/pyyaml-5.1-py37h1de35cc_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/pyzmq-18.0.0-py37h0a44026_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/send2trash-1.5.0-py37_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/sip-4.19.8-py37h0a44026_0.tar.bz2

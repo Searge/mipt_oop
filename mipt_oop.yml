@@ -1,5 +1,6 @@
 name: OOP
 channels:
+  - anaconda
   - defaults
 dependencies:
   - appnope=0.1.0=py37_0
@@ -8,7 +9,7 @@ dependencies:
   - autopep8=1.4.4=py_0
   - backcall=0.1.0=py37_0
   - bleach=3.1.0=py37_0
-  - ca-certificates=2019.1.23=0
+  - ca-certificates=2019.5.15=0
   - certifi=2019.3.9=py37_0
   - dbus=1.13.6=h90a0687_0
   - decorator=4.4.0=py37_1
@@ -47,7 +48,7 @@ dependencies:
   - nbformat=4.4.0=py37_0
   - ncurses=6.1=h0a44026_1
   - notebook=5.7.8=py37_0
-  - openssl=1.1.1b=h1de35cc_1
+  - openssl=1.1.1=h1de35cc_0
   - pandoc=2.2.3.2=0
   - pandocfilters=1.4.2=py37_1
   - parso=0.4.0=py_0
@@ -66,6 +67,7 @@ dependencies:
   - pyrsistent=0.14.11=py37h1de35cc_0
   - python=3.7.3=h359304d_0
   - python-dateutil=2.8.0=py37_0
+  - pyyaml=5.1=py37h1de35cc_0
   - pyzmq=18.0.0=py37h0a44026_0
   - qt=5.9.7=h468cd18_1
   - qtconsole=4.4.4=py_0
@@ -86,6 +88,7 @@ dependencies:
   - widgetsnbextension=3.4.2=py37_0
   - wrapt=1.11.1=py37h1de35cc_0
   - xz=5.2.4=h1de35cc_4
+  - yaml=0.1.7=hc338f04_2
   - zeromq=4.3.1=h0a44026_3
   - zlib=1.2.11=h1de35cc_3
   - pip:
