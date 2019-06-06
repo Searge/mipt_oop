@@ -1,0 +1,24 @@
+--- !HTMLreport             # указывает, что хранящаяся ниже структура относиться к типу HTMLreport
+objects:
+  - &img !img
+      alt_text: google
+      src: "https://blog.coursera.org/wp-content/uploads/2017/07/coursera-fb.png"
+report: !report
+  filename: report_yaml.html
+  title: Report
+  parts:
+    - !chapter
+      caption: "chapter one"
+      parts:
+        - "chapter 1 text"
+        - !link
+            obj: coursera
+            href: "https://ru.coursera.org"
+    - !chapter
+      caption: "chapter two"
+      parts:
+        - "Chapter 2 header"
+        - !link
+            obj: *img
+            href: "https://ru.coursera.org"
+        - "Chapter 2 footer"
