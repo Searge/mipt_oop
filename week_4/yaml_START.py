@@ -153,6 +153,7 @@ if __name__ == "__main__":
     # правильный вариант от
     # coursera.org/learn/oop-patterns-python/discussions/weeks/4/threads/PTPtcn50EemiuA5t4WqocA
     hero = yaml.load(hero_yaml, yaml.Loader).create_hero()
+    # https://github.com/yaml/pyyaml/wiki/PyYAML-yaml.load(input)-Deprecation
 
     hero.hit()
     hero.cast()
