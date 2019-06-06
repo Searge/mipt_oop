@@ -3,11 +3,11 @@ import random
 
 class AbstractLevel:
 
-    class Map:
-        pass
+    # class Map:
+    #     pass
 
-    class Object:
-        pass
+    # class Objects:
+    #     pass
 
     @classmethod
     def get_map(cls):
@@ -15,7 +15,7 @@ class AbstractLevel:
 
     @classmethod
     def get_objects(cls):
-        return cls.Object()
+        return cls.Objects()
 
 
 class EasyLevel(AbstractLevel):
@@ -34,7 +34,7 @@ class EasyLevel(AbstractLevel):
         def get_map(self):
             return self._map
 
-    class Object:
+    class Objects:
         def __init__(self):
             # размещаем переход на след. уровень
             self.objects = [('next_lvl', (2, 2))]
@@ -121,7 +121,8 @@ class HardLevel(AbstractLevel):
                 intersect = True
                 while intersect:
                     intersect = False
-                    if map_obj.get_map()[coord[0]][coord[1]] == -1:
+                    # Замінити на: map_obj.get_map()[coord[0]][coord[1]]
+                    if map_obj[coord[0]][coord[1]] == -1:
                         intersect = True
                         coord = (random.randint(1, 8), random.randint(1, 8))
                         continue
@@ -135,13 +136,21 @@ class HardLevel(AbstractLevel):
             return self.objects
 
 
+def create_level(factory):
+    map_obj = factory.get_map()
+    objects_obj = factory.get_objects()
+
+    return {"map": map_obj, "obj": objects_obj}
+
+
 if __name__ == "__main__":
-    factory = EasyLevel()
-    map_ = factory.get_map()
-    obj = factory.get_objects()
-    print(map_, obj, sep='\n')
-    # print(map_._map)
-    hard_factory = HardLevel()
-    getmap = hard_factory.get_map()
-    getobj = hard_factory.get_objects()
-    print(getmap, getobj, sep='\n')
+    # Перевірка для Курсери
+    # print(HardLevel.get_objects().get_objects(map))
+
+    # Реалізація здорової людини:
+    level = create_level(HardLevel)
+
+    _map = level["map"].get_map()
+    _obj = level["obj"].get_objects(_map)
+
+    print(_map, _obj, sep='\n')
