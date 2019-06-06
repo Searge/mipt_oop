@@ -3,11 +3,11 @@ import random
 
 class AbstractLevel:
 
-    # class Map:
-    #     pass
+    class Map:
+        pass
 
-    # class Objects:
-    #     pass
+    class Objects:
+        pass
 
     @classmethod
     def get_map(cls):
