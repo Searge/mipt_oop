@@ -1,18 +1,22 @@
 import yaml
 
-with open('md.yml', 'r') as md:
-    yml_MD = md.read()
 
-with open('html.yml', 'r') as html:
-    yml_HTML = html.read()
+def read_file(fname: str) -> str:
+    with open(fname, 'r') as f:
+        return f.read()
 
-# теперь ReportFactory - потомок yaml.YAMLObject.
-# Сделано для того, чтобы yaml оработчик знал новый тип данных,
-# указанный в yaml_tag он будет определён в фабриках - потомках
+
+yml_MD = read_file('md.yml')
+yml_HTML = read_file('html.yml')
+
+print(yml_MD)
 
 
 class ReportFactory(yaml.YAMLObject):
     """
+    теперь ReportFactory - потомок yaml.YAMLObject.
+    Сделано для того, чтобы yaml оработчик знал новый тип данных,
+    указанный в yaml_tag он будет определён в фабриках - потомках
     данные yaml фала - структура отчёта одинакова для всех потомков.
     В связи с этим - получение отчёта из yaml файла - классовый метод
     со специальным именем from_yaml
@@ -21,11 +25,12 @@ class ReportFactory(yaml.YAMLObject):
     @classmethod
     def from_yaml(cls, loader, node):
         # сначала опишем функции для обработки каждого нового типа
-        # метод loader.construct_mapping() формирует из содержания node словарь
 
         def get_report(loader, node):
-            # обработчик создания отчёта !report
+            # метод loader.construct_mapping()
+            # формирует из содержания node словарь
             data = loader.construct_mapping(node)
+            # обработчик создания отчёта !report
             rep = cls.make_report(data["title"])
             rep.filename = data["filename"]
             # на данный момент data["parts"] пуст.
@@ -195,4 +200,14 @@ class HTMLreportFactory(ReportFactory):
             return f'<img alt = "{self.alt_text}", sr c ="{self.src}"/>'
 
 
-# Осталось провести загрузку yaml файла и вывести результат
+if __name__ == "__main__":
+    # Осталось провести загрузку yaml файла и вывести результат
+    # загружаем yaml файл markdown отчёта
+    txtreport = yaml.load(yml_MD)
+    txtreport.save()                         # сохраняем
+    print("Сохранено:", txtreport.filename)  # вывод
+
+    # загружаем yaml файл markdown отчёта
+    HTMLreport = yaml.load(yml_HTML)
+    HTMLreport.save()                        # сохраняем
+    print("Сохранено:", HTMLreport.filename)  # вывод

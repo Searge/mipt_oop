@@ -1,4 +1,5 @@
---- !HTMLreport             # указывает, что хранящаяся ниже структура относиться к типу HTMLreport
+--- !HTMLreport
+# указывает, что хранящаяся ниже структура относиться к типу HTMLreport
 objects:
   - &img !img
       alt_text: google
