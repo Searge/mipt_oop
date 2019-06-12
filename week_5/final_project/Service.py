@@ -87,6 +87,14 @@ class MapFactory(yaml.YAMLObject):
 
         return {'map': _map, 'obj': _obj}
 
+    @classmethod
+    def create_map(cls):
+        pass
+
+    @classmethod
+    def create_objects(cls):
+        pass
+
 
 class EndMap(MapFactory):
 

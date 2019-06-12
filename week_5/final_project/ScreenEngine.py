@@ -29,7 +29,8 @@ class ScreenHandle(pygame.Surface):
             canvas.blit(self.successor, self.next_coord)
             self.successor.draw(canvas)
 
-    # FIXME connect_engine
+    def connect_engine(self, engine):
+        # FIXME connect_engine
 
 
 class GameSurface(ScreenHandle):
@@ -61,7 +62,7 @@ class GameSurface(ScreenHandle):
 
     def draw_object(self, sprite, coord):
         size = self.game_engine.sprite_size
-    # FIXME || calculate (min_x,min_y) - left top corner
+        # FIXME || calculate (min_x,min_y) - left top corner
 
         min_x = 0
         min_y = 0
@@ -72,7 +73,7 @@ class GameSurface(ScreenHandle):
 
     def draw(self, canvas):
         size = self.game_engine.sprite_size
-    # FIXME || calculate (min_x,min_y) - left top corner
+        # FIXME || calculate (min_x,min_y) - left top corner
 
         min_x = 0
         min_y = 0
