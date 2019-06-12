@@ -9,8 +9,6 @@ def read_file(fname: str) -> str:
 yml_MD = read_file('md.yml')
 yml_HTML = read_file('html.yml')
 
-print(yml_MD)
-
 
 class ReportFactory(yaml.YAMLObject):
     """

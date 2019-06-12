@@ -34,13 +34,17 @@ def create_game(sprite_size, is_new):
         Service.service_init(sprite_size)
         Service.reload_game(engine, hero)
         with ScreenEngine as SE:
-            drawer = SE.GameSurface((640, 480), pygame.SRCALPHA, (0, 480),
-                                    SE.ProgressBar((640, 120), (640, 0),
-                                                   SE.InfoWindow((160, 600), (50, 50),
-                                                                 SE.HelpWindow((700, 500), pygame.SRCALPHA, (0, 0),
-                                                                               SE.ScreenHandle(
-                                                                                   (0, 0))
-                                                                               ))))
+            drawer = SE.GameSurface(
+                (640, 480), pygame.SRCALPHA, (0, 480),
+                SE.ProgressBar(
+                    (640, 120), (640, 0),
+                    SE.InfoWindow(
+                        (160, 600), (50, 50),
+                        SE.HelpWindow(
+                            (700, 500), pygame.SRCALPHA, (0, 0),
+                            SE.ScreenHandle(
+                                (0, 0))
+                        ))))
 
     else:
         engine.sprite_size = sprite_size

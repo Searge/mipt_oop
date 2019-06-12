@@ -37,7 +37,9 @@ def restore_hp(engine, hero):
 
 
 def apply_blessing(engine, hero):
-    if hero.gold >= int(20 * 1.5**engine.level) - 2 * hero.stats["intelligence"]:
+    if hero.gold >= int(
+        20 * 1.5**engine.level
+    ) - 2 * hero.stats["intelligence"]:
         engine.score += 0.2
         hero.gold -= int(20 * 1.5**engine.level) - \
             2 * hero.stats["intelligence"]
@@ -52,7 +54,9 @@ def apply_blessing(engine, hero):
 
 
 def remove_effect(engine, hero):
-    if hero.gold >= int(10 * 1.5**engine.level) - 2 * hero.stats["intelligence"] and "base" in dir(hero):
+    if hero.gold >= int(
+        10 * 1.5**engine.level
+    ) - 2 * hero.stats["intelligence"] and "base" in dir(hero):
         hero.gold -= int(10 * 1.5**engine.level) - \
             2 * hero.stats["intelligence"]
         engine.hero = hero.base
@@ -67,7 +71,8 @@ def add_gold(engine, hero):
         engine.notify("You were cursed")
     else:
         engine.score += 0.1
-        gold = int(random.randint(10, 1000) * (1.1**(engine.hero.level - 1)))
+        gold = int(
+            random.randint(10, 1000) * (1.1**(engine.hero.level - 1)))
         hero.gold += gold
         engine.notify(f"{gold} gold added")
 
@@ -105,7 +110,7 @@ class EndMap(MapFactory):
             for i in self.Map:
                 for j in range(len(i)):
                     i[j] = wall if i[j] == '0' else floor1
-         
+
         def get_map(self):
             return self.Map
 
@@ -129,8 +134,10 @@ class RandomMap(MapFactory):
                     if i == 0 or j == 0 or i == 40 or j == 40:
                         self.Map[j][i] = wall
                     else:
-                        self.Map[j][i] = [wall, floor1, floor2, floor3, floor1,
-                                          floor2, floor3, floor1, floor2][random.randint(0, 8)]
+                        self.Map[j][i] = [wall,
+                                          floor1, floor2, floor3,
+                                          floor1, floor2, floor3,
+                                          floor1, floor2][random.randint(0, 8)]
 
         def get_map(self):
             return self.Map
@@ -144,7 +151,8 @@ class RandomMap(MapFactory):
 
             for obj_name in object_list_prob['objects']:
                 prop = object_list_prob['objects'][obj_name]
-                for i in range(random.randint(prop['min-count'], prop['max-count'])):
+                for i in range(random.randint(prop['min-count'],
+                                              prop['max-count'])):
                     coord = (random.randint(1, 39), random.randint(1, 39))
                     intersect = True
                     while intersect:
@@ -165,7 +173,8 @@ class RandomMap(MapFactory):
 
             for obj_name in object_list_prob['ally']:
                 prop = object_list_prob['ally'][obj_name]
-                for i in range(random.randint(prop['min-count'], prop['max-count'])):
+                for i in range(random.randint(prop['min-count'],
+                                              prop['max-count'])):
                     coord = (random.randint(1, 39), random.randint(1, 39))
                     intersect = True
                     while intersect:
@@ -225,9 +234,12 @@ def service_init(sprite_size, full=True):
     global floor3
 
     wall[0] = create_sprite(os.path.join("texture", "wall.png"), sprite_size)
-    floor1[0] = create_sprite(os.path.join("texture", "Ground_1.png"), sprite_size)
-    floor2[0] = create_sprite(os.path.join("texture", "Ground_2.png"), sprite_size)
-    floor3[0] = create_sprite(os.path.join("texture", "Ground_3.png"), sprite_size)
+    floor1[0] = create_sprite(os.path.join(
+        "texture", "Ground_1.png"), sprite_size)
+    floor2[0] = create_sprite(os.path.join(
+        "texture", "Ground_2.png"), sprite_size)
+    floor3[0] = create_sprite(os.path.join(
+        "texture", "Ground_3.png"), sprite_size)
 
     file = open("objects.yml", "r")
 

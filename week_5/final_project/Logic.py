@@ -36,28 +36,32 @@ class GameEngine:
     # MOVEMENT
     def move_up(self):
         self.score -= 0.02
-        if self.map[self.hero.position[1] - 1][self.hero.position[0]] == Service.wall:
+        _up = self.map[self.hero.position[1] - 1][self.hero.position[0]]
+        if _up == Service.wall:
             return
         self.hero.position[1] -= 1
         self.interact()
 
     def move_down(self):
         self.score -= 0.02
-        if self.map[self.hero.position[1] + 1][self.hero.position[0]] == Service.wall:
+        _down = self.map[self.hero.position[1] + 1][self.hero.position[0]]
+        if _down == Service.wall:
             return
         self.hero.position[1] += 1
         self.interact()
 
     def move_left(self):
         self.score -= 0.02
-        if self.map[self.hero.position[1]][self.hero.position[0] - 1] == Service.wall:
+        _left = self.map[self.hero.position[1]][self.hero.position[0] - 1]
+        if _left == Service.wall:
             return
         self.hero.position[0] -= 1
         self.interact()
 
     def move_right(self):
         self.score -= 0.02
-        if self.map[self.hero.position[1]][self.hero.position[0] + 1] == Service.wall:
+        _right = self.map[self.hero.position[1]][self.hero.position[0] + 1]
+        if _right == Service.wall:
             return
         self.hero.position[0] += 1
         self.interact()
