@@ -12,10 +12,10 @@
     "img"
   ],
   "pythonVersion": "3.7",
-  "venvPath": "/Users/searge/anaconda3/envs/",
+  "venvPath": "$HOME/anaconda3/envs/",
   "venv": "OOP",
   "extraPaths": [
-    "/Users/searge/anaconda3/envs/OOP/lib/python3.7/site-packages",
+    "$HOME/anaconda3/envs/OOP/lib/python3.7/site-packages",
     "week_1/modules"
   ]
 }
