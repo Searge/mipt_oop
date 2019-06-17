@@ -5,6 +5,8 @@ import ScreenEngine as SE
 import Logic
 import Service
 
+# Дополнительные задачи не сделаны.
+# PyYAML последней версии, потому `file.read(), Loader=yaml.Loader`
 
 SCREEN_DIM = (800, 600)
 

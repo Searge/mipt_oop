@@ -47,6 +47,10 @@ class GameSurface(ScreenHandle):
             self.successor.connect_engine(engine)
 
     def draw_hero(self):
+        """
+        Заменил `game_engine` из-за:
+        AttributeError: 'GameSurface' object has no attribute 'game_engine'
+        """
         self.engine.hero.draw(self)
 
     def draw_map(self):
