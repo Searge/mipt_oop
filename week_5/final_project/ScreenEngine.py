@@ -47,43 +47,43 @@ class GameSurface(ScreenHandle):
             self.successor.connect_engine(engine)
 
     def draw_hero(self):
-        self.game_engine.hero.draw(self)
+        self.engine.hero.draw(self)
 
     def draw_map(self):
         """calculate (min_x,min_y) - left top corner"""
         min_x = self.engine.hero.position[0] - 5
         min_y = self.engine.hero.position[1] - 5
 
-        if self.game_engine.map:
-            for i in range(len(self.game_engine.map[0]) - min_x):
-                for j in range(len(self.game_engine.map) - min_y):
+        if self.engine.map:
+            for i in range(len(self.engine.map[0]) - min_x):
+                for j in range(len(self.engine.map) - min_y):
                     self.blit(
-                        self.game_engine.map[min_y + j][min_x + i][0],
-                        (i * self.game_engine.sprite_size,
-                         j * self.game_engine.sprite_size))
+                        self.engine.map[min_y + j][min_x + i][0],
+                        (i * self.engine.sprite_size,
+                         j * self.engine.sprite_size))
         else:
             self.fill(colors["white"])
 
     def draw_object(self, sprite, coord):
-        size = self.game_engine.sprite_size
+        size = self.engine.sprite_size
         """calculate (min_x,min_y) - left top corner"""
         min_x = self.engine.hero.position[0] - 5
         min_y = self.engine.hero.position[1] - 5
     ##
-        self.blit(sprite, ((coord[0] - min_x) * self.game_engine.sprite_size,
-                           (coord[1] - min_y) * self.game_engine.sprite_size))
+        self.blit(sprite, ((coord[0] - min_x) * self.engine.sprite_size,
+                           (coord[1] - min_y) * self.engine.sprite_size))
 
     def draw(self, canvas):
-        size = self.game_engine.sprite_size
+        size = self.engine.sprite_size
         """calculate (min_x,min_y) - left top corner"""
         min_x = self.engine.hero.position[0] - 5
         min_y = self.engine.hero.position[1] - 5
     ##
         self.draw_map()
-        for obj in self.game_engine.objects:
+        for obj in self.engine.objects:
             self.blit(obj.sprite[0],
-                      ((obj.position[0] - min_x) * self.game_engine.sprite_size,
-                       (obj.position[1] - min_y) * self.game_engine.sprite_size))
+                      ((obj.position[0] - min_x) * self.engine.sprite_size,
+                       (obj.position[1] - min_y) * self.engine.sprite_size))
         self.draw_hero()
         # draw next surface in chain
         if self.successor is not None:
