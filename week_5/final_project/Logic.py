@@ -75,7 +75,8 @@ class GameEngine:
         self.objects.append(obj)
 
     def add_objects(self, objects):
-        self.objects.extend(objects)
+        if objects is not None:
+            self.objects.extend(objects)
 
     def delete_object(self, obj):
         self.objects.remove(obj)
