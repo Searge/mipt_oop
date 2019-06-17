@@ -81,15 +81,15 @@ class MapFactory(yaml.YAMLObject):
 
     @classmethod
     def from_yaml(cls, loader, node):
-
-        # FIXME
-        # get _map and _obj
+        _map = cls.get_map()
+        _obj = cls.get_objects()
+        _obj.config = loader.construct_mapping(node)
 
         return {'map': _map, 'obj': _obj}
 
     @classmethod
     def create_map(cls):
-        pass
+        return cls.Map()
 
     @classmethod
     def create_objects(cls):
@@ -242,12 +242,12 @@ def service_init(sprite_size, full=True):
     global floor3
 
     wall[0] = create_sprite(os.path.join("texture", "wall.png"), sprite_size)
-    floor1[0] = create_sprite(os.path.join(
-        "texture", "Ground_1.png"), sprite_size)
-    floor2[0] = create_sprite(os.path.join(
-        "texture", "Ground_2.png"), sprite_size)
-    floor3[0] = create_sprite(os.path.join(
-        "texture", "Ground_3.png"), sprite_size)
+    floor1[0] = create_sprite(os.path.join("texture", "Ground_1.png"),
+                              sprite_size)
+    floor2[0] = create_sprite(os.path.join("texture", "Ground_2.png"),
+                              sprite_size)
+    floor3[0] = create_sprite(os.path.join("texture", "Ground_3.png"),
+                              sprite_size)
 
     file = open("objects.yml", "r")
 
@@ -285,6 +285,6 @@ def service_init(sprite_size, full=True):
 
     if full:
         file = open("levels.yml", "r")
-        level_list = yaml.load(file.read())['levels']
+        level_list = yaml.load(file.read(), Loader=yaml.Loader)['levels']
         level_list.append({'map': EndMap.Map(), 'obj': EndMap.Objects()})
         file.close()

@@ -64,58 +64,73 @@ create_game(size, True)
 
 while engine.working:
 
-    if KEYBOARD_CONTROL:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                engine.working = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_h:
-                    engine.show_help = not engine.show_help
-                if event.key == pygame.K_KP_PLUS:
-                    size = size + 1
-                    create_game(size, False)
-                if event.key == pygame.K_KP_MINUS:
-                    size = size - 1
-                    create_game(size, False)
-                if event.key == pygame.K_r:
-                    create_game(size, True)
-                if event.key == pygame.K_ESCAPE:
+    if hero.hp >= 0:
+        if KEYBOARD_CONTROL:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                     engine.working = False
-                if engine.game_process:
-                    if event.key == pygame.K_UP:
-                        engine.move_up()
-                        iteration += 1
-                    elif event.key == pygame.K_DOWN:
-                        engine.move_down()
-                        iteration += 1
-                    elif event.key == pygame.K_LEFT:
-                        engine.move_left()
-                        iteration += 1
-                    elif event.key == pygame.K_RIGHT:
-                        engine.move_right()
-                        iteration += 1
-                else:
-                    if event.key == pygame.K_RETURN:
-                        create_game()
-    else:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                engine.working = False
-        if engine.game_process:
-            actions = [
-                engine.move_right,
-                engine.move_left,
-                engine.move_up,
-                engine.move_down,
-            ]
-            answer = np.random.randint(0, 100, 4)
-            prev_score = engine.score
-            move = actions[np.argmax(answer)]()
-            state = pygame.surfarray.array3d(gameDisplay)
-            reward = engine.score - prev_score
-            print(reward)
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_h:
+                        engine.show_help = not engine.show_help
+                    if event.key == pygame.K_KP_PLUS:
+                        size = size + 1
+                        create_game(size, False)
+                    if event.key == pygame.K_KP_MINUS:
+                        size = size - 1
+                        create_game(size, False)
+                    if event.key == pygame.K_r:
+                        create_game(size, True)
+                        Died = False
+                    if event.key == pygame.K_ESCAPE:
+                        engine.working = False
+                    if engine.game_process:
+                        if event.key == pygame.K_UP:
+                            engine.move_up()
+                            iteration += 1
+                        elif event.key == pygame.K_DOWN:
+                            engine.move_down()
+                            iteration += 1
+                        elif event.key == pygame.K_LEFT:
+                            engine.move_left()
+                            iteration += 1
+                        elif event.key == pygame.K_RIGHT:
+                            engine.move_right()
+                            iteration += 1
+                    else:
+                        if event.key == pygame.K_RETURN:
+                            create_game()
+                            Died = False
         else:
-            create_game()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    engine.working = False
+            if engine.game_process:
+                actions = [
+                    engine.move_right,
+                    engine.move_left,
+                    engine.move_up,
+                    engine.move_down,
+                ]
+                answer = np.random.randint(0, 100, 4)
+                prev_score = engine.score
+                move = actions[np.argmax(answer)]()
+                state = pygame.surfarray.array3d(gameDisplay)
+                reward = engine.score - prev_score
+                print(reward)
+            else:
+                create_game()
+    else:
+        if not Died:
+            engine.notify("YOU ARE DEAD!")
+            engine.notify("Press R to try again!")
+            Died = True
+        if KEYBOARD_CONTROL:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    engine.working = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        create_game(size, True)
 
     gameDisplay.blit(drawer, (0, 0))
     drawer.draw(gameDisplay)

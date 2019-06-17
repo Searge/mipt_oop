@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
+
 import pygame
-import random
 
 
 def create_sprite(img, sprite_size):
@@ -53,10 +53,8 @@ class Creature(AbstractObject):
 class Enemy(Creature, Interactive):
 
     def __init__(self, icon, stats, xp, position):
-        self.sprite = icon
-        self.stats = stats
+        super().__init__(icon, stats, position)
         self.xp = xp
-        self.position = position
 
     def interact(self, engine, hero):
         self.stats(engine, hero)
