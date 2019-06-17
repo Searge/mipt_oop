@@ -1,8 +1,10 @@
+from abc import ABC
+import Objects
+import os
 import pygame
 import random
 import yaml
-import os
-import Objects
+
 
 OBJECT_TEXTURE = os.path.join("texture", "objects")
 ENEMY_TEXTURE = os.path.join("texture", "enemies")
@@ -88,13 +90,187 @@ class MapFactory(yaml.YAMLObject):
         return {'map': _map, 'obj': _obj}
 
     @classmethod
-    def create_map(cls):
+    def get_map(cls):
         return cls.Map()
 
     @classmethod
-    def create_objects(cls):
+    def get_objects(cls):
+        return cls.Objects()
+
+    class Map(ABC):
         pass
 
+    class Objects(ABC):
+        pass
+
+
+class Empty_Map(MapFactory):
+    yaml_tag = "!empty_map"
+
+    class Map:
+        def __init__(self):
+            self.Map = ['000000000000000000000000000000000000000',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '000000000000000000000000000000000000000'
+                        ]
+            self.Map = list(map(list, self.Map))
+            for i in self.Map:
+                for j in range(len(i)):
+                    i[j] = wall if i[j] == '0' else floor1
+
+        def get_map(self):
+            return self.Map
+
+    class Objects:
+        def __init__(self):
+            self.objects = []
+
+        def get_objects(self, _map):
+            for obj_name in object_list_prob['objects']:
+                prop = object_list_prob['objects'][obj_name]
+                for i in range(random.randint(prop['min-count'], prop['max-count'])):
+                    coord = (5, 5)
+                    intersect = True
+                    while intersect:
+                        intersect = False
+                        if _map[coord[1]][coord[0]] == wall:
+                            intersect = True
+                            coord = (random.randint(1, 10),
+                                     random.randint(1, 10))
+                            continue
+                        for obj in self.objects:
+                            if coord == obj.position or coord == (1, 1):
+                                intersect = True
+                                coord = (random.randint(1, 10),
+                                         random.randint(1, 10))
+
+                    self.objects.append(Objects.Ally(
+                        prop['sprite'], prop['action'], coord))
+
+            for obj_name in object_list_prob['ally']:
+                prop = object_list_prob['ally'][obj_name]
+                for i in range(random.randint(prop['min-count'], prop['max-count'])):
+                    coord = (random.randint(1, 10), random.randint(1, 10))
+                    intersect = True
+                    while intersect:
+                        intersect = False
+                        if _map[coord[1]][coord[0]] == wall:
+                            intersect = True
+                            coord = (random.randint(1, 10),
+                                     random.randint(1, 10))
+                            continue
+                        for obj in self.objects:
+                            if coord == obj.position or coord == (1, 1):
+                                intersect = True
+                                coord = (random.randint(1, 10),
+                                         random.randint(1, 10))
+                    self.objects.append(Objects.Ally(
+                        prop['sprite'], prop['action'], coord))
+
+            return self.objects
+
+
+class Special_Map(MapFactory):
+    yaml_tag = "!special_map"
+
+    class Map:
+        def __init__(self):
+            self.Map = ['000000000000000000000000000000000000000',
+                        '0 0                                   0',
+                        '0                                     0',
+                        '0             0                       0',
+                        '0                                     0',
+                        '0                  0                  0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '0                                     0',
+                        '000000000000000000000000000000000000000'
+                        ]
+            self.Map = list(map(list, self.Map))
+            for i in self.Map:
+                for j in range(len(i)):
+                    i[j] = wall if i[j] == '0' else floor1
+
+        def get_map(self):
+            return self.Map
+
+    class Objects:
+        def __init__(self):
+            self.objects = []
+
+        def get_objects(self, _map):
+                for obj_name in object_list_prob['objects']:
+                    prop = object_list_prob['objects'][obj_name]
+                    for i in range(random.randint(prop['min-count'], prop['max-count'])):
+                        coord = (random.randint(2, 37), random.randint(2, 9))
+                        intersect = True
+                        while intersect:
+                            intersect = False
+                            if _map[coord[1]][coord[0]] == wall:
+                                intersect = True
+                                coord = (random.randint(2, 37),
+                                         random.randint(2, 9))
+                                continue
+                            for obj in self.objects:
+                                if coord == obj.position or coord == (1, 1):
+                                    intersect = True
+                                    coord = (random.randint(2, 37),
+                                             random.randint(2, 9))
+
+                        self.objects.append(Objects.Ally(
+                            prop['sprite'], prop['action'], coord))
+
+                for obj_name in object_list_prob['ally']:
+                    prop = object_list_prob['ally'][obj_name]
+                    for i in range(random.randint(prop['min-count'], prop['max-count'])):
+                        coord = (random.randint(2, 37), random.randint(2, 9))
+                        intersect = True
+                        while intersect:
+                            intersect = False
+                            if _map[coord[1]][coord[0]] == wall:
+                                intersect = True
+                                coord = (random.randint(2, 37),
+                                         random.randint(2, 9))
+                                continue
+                            for obj in self.objects:
+                                if coord == obj.position or coord == (1, 1):
+                                    intersect = True
+                                    coord = (random.randint(2, 37),
+                                             random.randint(2, 9))
+                        self.objects.append(Objects.Ally(
+                            prop['sprite'], prop['action'], coord))
+
+                for obj_name in object_list_prob['enemies']:
+                    prop = object_list_prob['enemies'][obj_name]
+                    for i in range(random.randint(0, 5)):
+                        coord = (random.randint(2, 37), random.randint(2, 9))
+                        intersect = True
+                        while intersect:
+                            intersect = False
+                            if _map[coord[1]][coord[0]] == wall:
+                                intersect = True
+                                coord = (random.randint(2, 37),
+                                         random.randint(2, 9))
+                                continue
+                            for obj in self.objects:
+                                if coord == obj.position or coord == (1, 1):
+                                    intersect = True
+                                    coord = (random.randint(2, 37),
+                                             random.randint(2, 9))
+
+                        self.objects.append(Objects.Enemy(
+                            prop['sprite'], prop, prop['experience'], coord))
+
+                return self.objects
 
 class EndMap(MapFactory):
 
@@ -251,7 +427,7 @@ def service_init(sprite_size, full=True):
 
     file = open("objects.yml", "r")
 
-    object_list_tmp = yaml.load(file.read())
+    object_list_tmp = yaml.load(file.read(), Loader=yaml.Loader)
     if full:
         object_list_prob = object_list_tmp
 
