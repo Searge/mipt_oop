@@ -55,6 +55,36 @@ class Creature(AbstractObject):
         self.max_hp = 5 + self.stats["endurance"] * 2
 
 
+class Enemy(Creature, Interactive):
+
+    def __init__(self, icon, stats, xp, position):
+        self.sprite = icon
+        self.stats = stats
+        self.xp = xp
+        self.position = position
+        self.calc_max_HP()
+        self.hp = self.max_hp
+
+    def interact(self, engine, hero):
+        self.hp -= hero.stats["strength"]
+        if random.randint(0, 20) < 15:
+            hero.hp -= self.stats["strength"]*10
+        hero.exp += self.xp
+        while hero.exp >= 100 * (2 ** (hero.level - 1)):
+            engine.notify("level up!")
+            hero.level += 1
+            hero.stats["strength"] += 2
+            hero.stats["endurance"] += 4
+            hero.calc_max_HP()
+            hero.hp = hero.max_hp
+
+        engine.notify("Got "+str(self.xp)+" xp")
+
+        if hero.hp <= 0:
+            engine.notify("You're dead")
+            engine.game_process = False
+
+
 class Hero(Creature):
 
     def __init__(self, stats, icon):
@@ -82,31 +112,6 @@ class Hero(Creature):
     def exp_interact(self, exp):
         self.exp += exp
         self.level_up()
-
-
-class Enemy(Creature, Interactive):
-
-    def __init__(self, icon, stats, xp, position):
-        self.sprite = icon
-        self.stats = stats
-        self.xp = xp
-        self.position = position
-        self.calc_max_HP()
-        self.hp = self.max_hp
-
-    def interact(self, engine, hero):
-        self.hp -= hero.stats["strength"]
-        if random.randint(0, 20) < 15:
-            hero.hp -= self.stats["strength"]*10
-        hero.exp += self.xp
-        while hero.exp >= 100 * (2 ** (hero.level - 1)):
-            engine.notify("level up!")
-            hero.level += 1
-            hero.stats["strength"] += 2
-            hero.stats["endurance"] += 4
-            hero.calc_max_HP()
-            hero.hp = hero.max_hp
-        engine.notify("Got "+str(self.xp)+" xp")
 
 
 class Effect(Hero):

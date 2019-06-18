@@ -23,8 +23,6 @@ class ScreenHandle(pygame.Surface):
             self.next_coord = (0, 0)
         super().__init__(*args, **kwargs)
         self.fill(colors["wooden"])
-        # TODO Скоротити якщо можливо:
-        self.engine = None
 
     def draw(self, canvas):
         if self.successor is not None:
@@ -33,7 +31,7 @@ class ScreenHandle(pygame.Surface):
 
     def connect_engine(self, engine):
         """Connect ツ"""
-        self.engine = engine
+        # self.engine = engine
         if self.successor is not None:
             self.successor.connect_engine(engine)
 
@@ -46,6 +44,11 @@ class GameSurface(ScreenHandle):
         if self.successor is not None:
             self.successor.connect_engine(engine)
 
+    def calculate(self):
+        min_x = self.engine.hero.position[0] - 5
+        min_y = self.engine.hero.position[1] - 5
+        return min_x, min_y
+
     def draw_hero(self):
         """
         Заменил `game_engine` из-за:
@@ -55,8 +58,7 @@ class GameSurface(ScreenHandle):
 
     def draw_map(self):
         """calculate (min_x,min_y) - left top corner"""
-        min_x = self.engine.hero.position[0] - 5
-        min_y = self.engine.hero.position[1] - 5
+        min_x, min_y = self.calculate()
 
         if self.engine.map:
             for i in range(len(self.engine.map[0]) - min_x):
@@ -71,8 +73,7 @@ class GameSurface(ScreenHandle):
     def draw_object(self, sprite, coord):
         size = self.engine.sprite_size
         """calculate (min_x,min_y) - left top corner"""
-        min_x = self.engine.hero.position[0] - 5
-        min_y = self.engine.hero.position[1] - 5
+        min_x, min_y = self.calculate()
     ##
         self.blit(sprite, ((coord[0] - min_x) * self.engine.sprite_size,
                            (coord[1] - min_y) * self.engine.sprite_size))
@@ -80,8 +81,7 @@ class GameSurface(ScreenHandle):
     def draw(self, canvas):
         size = self.engine.sprite_size
         """calculate (min_x,min_y) - left top corner"""
-        min_x = self.engine.hero.position[0] - 5
-        min_y = self.engine.hero.position[1] - 5
+        min_x, min_y = self.calculate()
     ##
         self.draw_map()
         for obj in self.engine.objects:
