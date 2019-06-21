@@ -1,0 +1,59 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'AbstractObject', 'x':8, 'y':73, 'width':128, 'height':94, 'attrs': 'position|min_x|sprite', 'meths': 'draw'}
+{'type':'umlshape', 'id':'Interactive', 'x':137, 'y':7, 'width':102, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'Ally', 'x':167, 'y':87, 'width':58, 'height':104, 'attrs': 'position|action|sprite', 'meths': '__init__|interact'}
+{'type':'umlshape', 'id':'Creature', 'x':160, 'y':209, 'width':77, 'height':124, 'attrs': 'max_hp|stats|sprite|hp|position', 'meths': '__init__|calc_max_HP'}
+{'type':'umlshape', 'id':'Enemy', 'x':269, 'y':66, 'width':58, 'height':124, 'attrs': 'xp|stats|sprite|hp|position', 'meths': '__init__|interact'}
+{'type':'umlshape', 'id':'Hero', 'x':32, 'y':355, 'width':82, 'height':144, 'attrs': 'gold|hp|level|exp|min_x', 'meths': '__init__|exp_interact|level_up|draw'}
+{'type':'umlshape', 'id':'Effect', 'x':170, 'y':345, 'width':60, 'height':164, 'attrs': 'max_hp|gold|stats|base|hp|sprite|level|exp|position|min_x', 'meths': '__init__'}
+{'type':'umlshape', 'id':'Berserk', 'x':266, 'y':331, 'width':82, 'height':54, 'attrs': '', 'meths': 'apply_effect'}
+{'type':'umlshape', 'id':'Blessing', 'x':261, 'y':239, 'width':82, 'height':54, 'attrs': '', 'meths': 'apply_effect'}
+{'type':'umlshape', 'id':'Weakness', 'x':269, 'y':417, 'width':82, 'height':54, 'attrs': '', 'meths': 'apply_effect'}
+{'type':'umlshape', 'id':'Curse', 'x':271, 'y':511, 'width':82, 'height':54, 'attrs': '', 'meths': 'apply_effect'}
+{'type':'umlshape', 'id':'ABC', 'x':56, 'y':11, 'width':35, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'ScreenHandle', 'x':652, 'y':260, 'width':111, 'height':104, 'attrs': 'successor|next_coord', 'meths': '__init__|draw|connect_engine'}
+{'type':'umlshape', 'id':'GameSurface', 'x':850, 'y':324, 'width':102, 'height':124, 'attrs': 'engine', 'meths': 'draw_map|draw_object|calculate|draw_hero|draw|connect_engine'}
+{'type':'umlshape', 'id':'ProgressBar', 'x':472, 'y':427, 'width':102, 'height':94, 'attrs': 'engine', 'meths': '__init__|draw|connect_engine'}
+{'type':'umlshape', 'id':'InfoWindow', 'x':873, 'y':602, 'width':94, 'height':124, 'attrs': 'data|len|engine', 'meths': '__init__|draw|connect_engine|update'}
+{'type':'umlshape', 'id':'HelpWindow', 'x':660, 'y':424, 'width':94, 'height':114, 'attrs': 'data|len|engine', 'meths': '__init__|draw|connect_engine'}
+{'type':'umlshape', 'id':'pygame.Surface', 'x':437, 'y':299, 'width':128, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'collections.deque', 'x':629, 'y':652, 'width':153, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'MapFactory', 'x':512, 'y':39, 'width':94, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'Map', 'x':440, 'y':105, 'width':58, 'height':84, 'attrs': 'Map', 'meths': '__init__|get_map'}
+{'type':'umlshape', 'id':'Objects', 'x':53, 'y':618, 'width':76, 'height':84, 'attrs': 'objects', 'meths': '__init__|get_objects'}
+{'type':'umlshape', 'id':'Empty_Map', 'x':661, 'y':172, 'width':86, 'height':54, 'attrs': 'yaml_tag', 'meths': ''}
+{'type':'umlshape', 'id':'Special_Map', 'x':654, 'y':23, 'width':102, 'height':54, 'attrs': 'yaml_tag', 'meths': ''}
+{'type':'umlshape', 'id':'EndMap', 'x':531, 'y':104, 'width':60, 'height':54, 'attrs': 'yaml_tag', 'meths': ''}
+{'type':'umlshape', 'id':'RandomMap', 'x':660, 'y':94, 'width':86, 'height':54, 'attrs': 'yaml_tag', 'meths': ''}
+{'type':'umlshape', 'id':'yaml.YAMLObject', 'x':343, 'y':38, 'width':136, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'Objects.Ally', 'x':211, 'y':646, 'width':111, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'Objects.Enemy', 'x':32, 'y':545, 'width':119, 'height':24, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'GameEngine', 'x':855, 'y':28, 'width':94, 'height':274, 'attrs': 'objects|map|hero|level|working|subscribers|score|game_process|show_help', 'meths': 'subscribe|unsubscribe|notify|add_hero|interact|move_up|move_down|move_left|move_right|load_map|add_object|add_objects|delete_object'}
+{'type':'edge', 'id':'Ally_to_Interactive', 'source':'Ally', 'target':'Interactive', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'AbstractObject_to_ABC', 'source':'AbstractObject', 'target':'ABC', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Enemy_to_Creature', 'source':'Enemy', 'target':'Creature', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Weakness_to_Effect', 'source':'Weakness', 'target':'Effect', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Curse_to_Effect', 'source':'Curse', 'target':'Effect', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Hero_to_Creature', 'source':'Hero', 'target':'Creature', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Creature_to_AbstractObject', 'source':'Creature', 'target':'AbstractObject', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Effect_to_Hero', 'source':'Effect', 'target':'Hero', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Ally_to_AbstractObject', 'source':'Ally', 'target':'AbstractObject', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Berserk_to_Effect', 'source':'Berserk', 'target':'Effect', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Blessing_to_Effect', 'source':'Blessing', 'target':'Effect', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Interactive_to_ABC', 'source':'Interactive', 'target':'ABC', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Enemy_to_Interactive', 'source':'Enemy', 'target':'Interactive', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'ScreenHandle_to_pygame.Surface', 'source':'ScreenHandle', 'target':'pygame.Surface', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'ProgressBar_to_ScreenHandle', 'source':'ProgressBar', 'target':'ScreenHandle', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'InfoWindow_to_ScreenHandle', 'source':'InfoWindow', 'target':'ScreenHandle', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'GameSurface_to_ScreenHandle', 'source':'GameSurface', 'target':'ScreenHandle', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'HelpWindow_to_ScreenHandle', 'source':'HelpWindow', 'target':'ScreenHandle', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'collections.deque_to_InfoWindow', 'source':'collections.deque', 'target':'InfoWindow', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'collections.deque_to_HelpWindow', 'source':'collections.deque', 'target':'HelpWindow', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'MapFactory_to_yaml.YAMLObject', 'source':'MapFactory', 'target':'yaml.YAMLObject', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'RandomMap_to_MapFactory', 'source':'RandomMap', 'target':'MapFactory', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'EndMap_to_MapFactory', 'source':'EndMap', 'target':'MapFactory', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Empty_Map_to_MapFactory', 'source':'Empty_Map', 'target':'MapFactory', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Special_Map_to_MapFactory', 'source':'Special_Map', 'target':'MapFactory', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'Objects.Ally_to_Objects', 'source':'Objects.Ally', 'target':'Objects', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'Objects.Enemy_to_Objects', 'source':'Objects.Enemy', 'target':'Objects', 'uml_edge_type': 'composition'}
