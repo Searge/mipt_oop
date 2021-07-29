@@ -15,17 +15,19 @@
 3. Программа должна корректно выполняться с исходными YAML файлами;
 4. Реализация дополнительных заданий
 
+## Objects.py
 
-Objects.py
-![](../img/Objects.png)
+![Objects](../img/Objects.png)
 
-ScreenEngine.py:
-![](../img/ScreenEngine.png)
+## ScreenEngine.py
 
-Service.py:
-![](../img/Service.png)
+![Screen](../img/ScreenEngine.png)
 
-### Дополнительные задачи:
+## Service.py
+
+![Service](../img/Service.png)
+
+### Дополнительные задачи
 
 1. Реализованы собственный противник и союзник;
 2. Добавлена отрисовка миникарты;
